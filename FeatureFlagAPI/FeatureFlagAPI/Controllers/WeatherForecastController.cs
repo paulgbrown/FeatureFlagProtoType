@@ -5,7 +5,7 @@ namespace FeatureFlagAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController : SummaryValidatorControllerBase
 {
     private readonly string RequireChannelAndUserInfo = "RequireChannelAndUserInfo";
 
@@ -16,11 +16,10 @@ public class WeatherForecastController : ControllerBase
 
     private readonly ILogger<WeatherForecastController> _logger;
     private readonly IFeatureManager _featureManager;
-    private readonly ISummaryValidator _summaryValidator;
 
     public WeatherForecastController(ILogger<WeatherForecastController> logger, ISummaryValidator summaryValidator)
+        : base(summaryValidator)
     {
-        _summaryValidator = summaryValidator;
         _logger = logger;
     }
 
